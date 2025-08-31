@@ -3,6 +3,7 @@
     string? name = ViewData["name"]?.ToString();
 }
 
-<div>
-      <h1>ようこそ @name さん</h1>
+<div class="d-flex justify-content-center align-items-center flex-column vh-100">
+    <h1 class="mb-3">ようこそ @name さん</h1>
+    <a href="/Lms/Index">蔵書管理システムへ</a>
 </div>
