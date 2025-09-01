@@ -1,6 +1,24 @@
 @{
+    ViewData["Title"] = "蔵書管理システム";
+    Layout = "_LmsLayout";
 }
 
-<div>
-    <h1>蔵書管理システム</h1>
+<div class="text-center m-4">Error Message</div>
+<div class="d-flex justify-content-center align-items-center">
+    <form method="get" action="/Books/Search" class="search-form">
+        <select name="searchType" class="search-select p-1">
+            <option value="title">タイトルで検索</option>
+            <option value="author">著者で検索</option>
+            <option value="isbn">ISBNコードで検索</option>
+        </select>
+
+        <input
+            type="text"
+            name="keyword"
+            placeholder="キーワードを入力"
+            required
+            class="search-input"/>
+
+        <button type="submit" class="search-button">検索</button>
+    </form>
 </div>

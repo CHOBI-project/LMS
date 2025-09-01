@@ -17,6 +17,12 @@ public class LmsController : Controller
     {
         return View();
     }
+
+    [HttpGet]
+    public IActionResult Search(string keyword)
+    {
+        return View();
+    }
     
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

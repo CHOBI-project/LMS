@@ -30,3 +30,9 @@ html {
     background: url(../images/home_bg.jpg) no-repeat center black;
     background-size: cover;
 }
+
+.lms_home_bg {
+    background: url(../images/lms_home_bg.jpeg) no-repeat center;
+    background-size: cover;
+    background-attachment: fixed;
+}
