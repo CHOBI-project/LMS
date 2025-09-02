@@ -19,7 +19,7 @@ public class LmsController : Controller
     }
 
     [HttpGet]
-    public IActionResult Search(string keyword)
+    public IActionResult Search(string searchType, string keyword)
     {
         return View();
     }
