@@ -6,5 +6,5 @@ public interface IBookDao
 {
     BookEntity FindByIsbn(BookEntity entity);
     BookEntity FindByTitle(BookEntity entity);
-    BookEntity FindByAuthor(BookEntity entity);
+    List<BookEntity> FindByAuthor(BookEntity entity);
 }

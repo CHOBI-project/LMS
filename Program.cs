@@ -3,6 +3,7 @@ using LMS.Models.Dao.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IEmployeeDao, EmployeeDao>();
+builder.Services.AddScoped<IBookDao, BookDao>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
