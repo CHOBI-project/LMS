@@ -6,7 +6,7 @@
 }
 
 <div class="d-flex justify-content-center align-items-center mt-4">
-    <form method="get" action="/Lms/Search" class="search-form">
+    <form asp-action="Search" method="get" class="search-form">
         <select name="searchType" class="search-select p-1">
             <option value="title">タイトルで検索</option>
             <option value="author">著者で検索</option>
@@ -22,7 +22,7 @@
 
         <button type="submit" class="search-button">検索</button>
     </form>
-    <form action="/Lms/Index" method="get">
+    <form asp-action="Index" method="get">
         <button type="submit" class="search-button m-1">全表示</button>
     </form>
 </div>

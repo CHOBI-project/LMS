@@ -1,0 +1,25 @@
+@{
+    Layout = "_LmsLayout";
+}
+
+<h2 class="text-center mt-3">蔵書登録</h2>
+<div class="d-flex justify-content-center align-items-center mt-4 text-black">
+    <form asp-action="Register" method="post" class="p-4 border rounded border-white" style="width: 400px;">
+        <div class="mb-3">
+            <label for="isbn" class="form-label">ISBN</label>
+            <input type="text" id="isbn" name="Isbn" class="form-control" placeholder="ISBNを入力" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="title" class="form-label">タイトル</label>
+            <input type="text" id="title" name="Title" class="form-control" placeholder="タイトルを入力" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="author" class="form-label">著者</label>
+            <input type="text" id="author" name="Author" class="form-control" placeholder="著者を入力" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">登録</button>
+    </form>
+</div>
