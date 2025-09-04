@@ -19,14 +19,15 @@ public class LmsController : Controller
 
     public IActionResult Index()
     {
-        return View();
+        var result = _bookDao.FindAll();
+        return View(result);
     }
 
     [HttpGet]
     public IActionResult Search(string searchType, string keyword)
     {
-        BookEntity book;
         List<BookEntity> result = new List<BookEntity>();
+        BookEntity book;
         
         switch (searchType)
         {
