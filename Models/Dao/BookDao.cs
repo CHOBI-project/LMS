@@ -103,4 +103,17 @@ public class BookDao : BaseDao<BookEntity>, IBookDao
         
         return books;
     }
+
+    public void Add(BookEntity entity)
+    {
+        using var connection = new MySqlConnection(ConnectionString);
+        connection.Open();
+
+        string sql = "INSERT INTO Books VALUES (@isbn, @title, @author)";
+        using var cmd = new MySqlCommand(sql, connection);
+        cmd.Parameters.Add("@isbn", MySqlDbType.VarChar, 13).Value = entity.Isbn;
+        cmd.Parameters.Add("@title", MySqlDbType.VarChar, 255).Value = entity.Title;
+        cmd.Parameters.Add("@author", MySqlDbType.VarChar, 100).Value = entity.Author;
+        cmd.ExecuteNonQuery();
+    }
 }

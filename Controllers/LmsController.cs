@@ -19,7 +19,7 @@ public class LmsController : Controller
 
     public IActionResult Index()
     {
-        var result = _bookDao.FindAll();
+        List<BookEntity> result = _bookDao.FindAll();
         return View(result);
     }
 
@@ -59,6 +59,27 @@ public class LmsController : Controller
         }
         
         return View("Index", result);
+    }
+
+    public IActionResult Register(string isbn, string title, string author)
+    {
+        if (string.IsNullOrEmpty(isbn) || string.IsNullOrEmpty(title) || string.IsNullOrEmpty(author))
+        {
+            ViewData["Message"] = "すべてのフィールドを入力してください。";
+            return View();
+        }
+        
+        BookEntity newBook = new BookEntity
+        {
+            Isbn = isbn,
+            Title = title,
+            Author = author
+        };
+        
+        _bookDao.Add(newBook);
+        ViewData["Message"] = "書籍が正常に登録されました。";
+        
+        return View();
     }
     
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
