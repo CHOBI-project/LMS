@@ -107,6 +107,7 @@ public class LmsController : Controller
         return View(book);
     }
 
+    [HttpPost]
     public IActionResult Update(string isbn, string title, string author)
     {
         if (string.IsNullOrEmpty(isbn) || string.IsNullOrEmpty(title) || string.IsNullOrEmpty(author))
@@ -128,6 +129,7 @@ public class LmsController : Controller
         return RedirectToAction("Index");
     }
 
+    [HttpPost]
     public IActionResult Delete(String isbn)
     {
         if (string.IsNullOrEmpty(isbn))
