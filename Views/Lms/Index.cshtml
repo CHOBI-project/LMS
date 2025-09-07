@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "蔵書管理システム";
     Layout = "_LmsLayout";
+    int max = 20;
 }
 
 <div class="d-flex justify-content-center align-items-center mt-4">
@@ -29,16 +30,16 @@
 <div class="text-center m-4">@ViewData["Message"]</div>
 
 
-<h2>蔵書一覧</h2>
-
+<h2 class="text-center mt-3">蔵書一覧</h2>
 @if (Model != null && Model.Count > 0)
 {
-    <table class="table table-striped">
+    <table class="table table-bordered transparent-table">
         <thead>
         <tr>
             <th>ISBN</th>
             <th>タイトル</th>
             <th>著者</th>
+            <th class="text-center">詳細情報</th>
         </tr>
         </thead>
         <tbody>
@@ -46,8 +47,19 @@
         {
             <tr>
                 <td>@book.Isbn</td>
-                <td>@book.Title</td>
-                <td>@book.Author</td>
+                <td>@(book.Title.Length <= max ? book.Title : book.Title.Substring(0,20) + "...")</td>
+                <td>@(book.Author.Length <= max ? book.Author : book.Author.Substring(0, 20) + "...")</td>
+                <td class="text-center">
+                    <a
+                        asp-controller="Lms"
+                        asp-action="Detail"
+                        asp-route-isbn="@book.Isbn"
+                        asp-route-title="@book.Title"
+                        asp-route-author="@book.Author"
+                        class="btn btn-primary btn-sm">
+                        編集
+                    </a>
+                </td>
             </tr>
         }
         </tbody>

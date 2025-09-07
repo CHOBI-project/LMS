@@ -32,7 +32,18 @@ html {
 }
 
 .lms_home_bg {
-    background: url(../images/lms_home_bg.jpeg) no-repeat center;
+    background: url(../images/lms_home_bg.jpeg) no-repeat center rgba(0,0,0,0.5);
     background-size: cover;
     background-attachment: fixed;
+    background-blend-mode: multiply;
+}
+
+.transparent-table {
+    background-color: transparent !important;
+}
+
+.transparent-table thead th,
+.transparent-table tbody td {
+    background-color: transparent !important;
+    color: white !important;
 }

@@ -20,6 +20,7 @@ public class LmsController : Controller
     public IActionResult Index()
     {
         List<BookEntity> result = _bookDao.FindAll();
+        ViewData["Message"] = TempData["Message"];
         return View(result);
     }
 
@@ -61,6 +62,12 @@ public class LmsController : Controller
         return View("Index", result);
     }
 
+    public IActionResult Register()
+    {
+        return View();
+    }
+
+    [HttpPost]
     public IActionResult Register(string isbn, string title, string author)
     {
         if (string.IsNullOrEmpty(isbn) || string.IsNullOrEmpty(title) || string.IsNullOrEmpty(author))
@@ -80,6 +87,45 @@ public class LmsController : Controller
         ViewData["Message"] = "書籍が正常に登録されました。";
         
         return View();
+    }
+
+    public IActionResult Detail(string isbn, string title, string author)
+    {
+        if (string.IsNullOrEmpty(isbn) || string.IsNullOrEmpty(title) || string.IsNullOrEmpty(author))
+        {
+            ViewData["Message"] = "詳細情報が取得できませんでした。";
+            return View("Index");
+        }
+
+        BookEntity book = new BookEntity()
+        {
+            Isbn = isbn,
+            Title = title,
+            Author = author
+        };
+        
+        return View(book);
+    }
+
+    public IActionResult Update(string isbn, string title, string author)
+    {
+        if (string.IsNullOrEmpty(isbn) || string.IsNullOrEmpty(title) || string.IsNullOrEmpty(author))
+        {
+            ViewData["Message"] = "更新情報が取得できませんでした。";
+            return View("Detail");
+        }
+        
+        BookEntity book = new BookEntity()
+        {
+            Isbn = isbn,
+            Title = title,
+            Author = author
+        };
+        
+        _bookDao.Update(book);
+        TempData["Message"] = "書籍が正常に更新されました。";
+        
+        return RedirectToAction("Index");
     }
     
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
