@@ -47,3 +47,13 @@ html {
     background-color: transparent !important;
     color: white !important;
 }
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #bb2d3b;
+    color: white;
+}
