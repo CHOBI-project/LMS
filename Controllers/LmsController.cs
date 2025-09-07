@@ -84,12 +84,12 @@ public class LmsController : Controller
         };
         
         _bookDao.Add(newBook);
-        ViewData["Message"] = "書籍が正常に登録されました。";
+        TempData["Message"] = "書籍が正常に登録されました。";
         
-        return View();
+        return RedirectToAction("Index");
     }
 
-    public IActionResult Detail(string isbn, string title, string author)
+    public IActionResult Edit(string isbn, string title, string author)
     {
         if (string.IsNullOrEmpty(isbn) || string.IsNullOrEmpty(title) || string.IsNullOrEmpty(author))
         {
@@ -112,7 +112,7 @@ public class LmsController : Controller
         if (string.IsNullOrEmpty(isbn) || string.IsNullOrEmpty(title) || string.IsNullOrEmpty(author))
         {
             ViewData["Message"] = "更新情報が取得できませんでした。";
-            return View("Detail");
+            return View("Edit");
         }
         
         BookEntity book = new BookEntity()
@@ -124,6 +124,24 @@ public class LmsController : Controller
         
         _bookDao.Update(book);
         TempData["Message"] = "書籍が正常に更新されました。";
+        
+        return RedirectToAction("Index");
+    }
+
+    public IActionResult Delete(String isbn)
+    {
+        if (string.IsNullOrEmpty(isbn))
+        {
+            ViewData["Message"] = "削除情報が取得できませんでした。";
+            return View("Edit");
+        }
+        BookEntity book = new BookEntity()
+        {
+            Isbn = isbn
+        };
+        
+        _bookDao.Delete(book);
+        TempData["Message"] = "書籍が正常に削除されました。";
         
         return RedirectToAction("Index");
     }

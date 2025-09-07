@@ -10,4 +10,5 @@ public interface IBookDao
     List<BookEntity> FindByAuthor(BookEntity entity);
     void Add(BookEntity entity);
     void Update(BookEntity entiry);
+    void Delete(BookEntity entity);
 }
