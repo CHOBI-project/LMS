@@ -3,6 +3,7 @@ using LMS.Models.Dao.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IEmployeeDao, EmployeeDao>();
+builder.Services.AddScoped<IBookDao, BookDao>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -26,7 +27,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
         name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}")
+        pattern: "{controller=Lms}/{action=Index}/{id?}")
     .WithStaticAssets();
 
 

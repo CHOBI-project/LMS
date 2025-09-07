@@ -1,6 +1,68 @@
+@model List<LMS.Models.Entities.BookEntity>
+
 @{
+    ViewData["Title"] = "蔵書管理システム";
+    Layout = "_LmsLayout";
+    int max = 20;
 }
 
-<div>
-    <h1>蔵書管理システム</h1>
+<div class="d-flex justify-content-center align-items-center mt-4">
+    <form asp-action="Search" method="get" class="search-form">
+        <select name="searchType" class="search-select p-1">
+            <option value="title">タイトルで検索</option>
+            <option value="author">著者で検索</option>
+            <option value="isbn">ISBNコードで検索</option>
+        </select>
+
+        <input
+            type="text"
+            name="keyword"
+            placeholder="キーワードを入力"
+            required
+            class="search-input"/>
+
+        <button type="submit" class="search-button">検索</button>
+    </form>
+    <form asp-action="Index" method="get">
+        <button type="submit" class="search-button m-1">全表示</button>
+    </form>
 </div>
+<div class="text-center m-4">@ViewData["Message"]</div>
+
+
+<h2 class="text-center mt-3">蔵書一覧</h2>
+@if (Model != null && Model.Count > 0)
+{
+    <table class="table table-bordered transparent-table">
+        <thead>
+        <tr>
+            <th>ISBN</th>
+            <th>タイトル</th>
+            <th>著者</th>
+            <th class="text-center">詳細情報</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Isbn</td>
+                <td>@(book.Title.Length <= max ? book.Title : book.Title.Substring(0,20) + "...")</td>
+                <td>@(book.Author.Length <= max ? book.Author : book.Author.Substring(0, 20) + "...")</td>
+                <td class="text-center">
+                    <a
+                        asp-controller="Lms"
+                        asp-action="Edit"
+                        asp-route-isbn="@book.Isbn"Ï
+                        asp-route-title="@book.Title"
+                        asp-route-author="@book.Author"
+                        class="btn btn-primary btn-sm">
+                        編集
+                    </a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+

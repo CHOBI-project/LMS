@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - LMS</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/LMS.styles.css" asp-append-version="true"/>
+</head>
+
+<body>
+<div class="lms_home_bg text-white p-3 min-vh-100">
+    <header class="d-flex justify-content-between align-items-center border-bottom border-white">
+        <h1>蔵書管理システム</h1>
+        <nav>
+            <ul class="nav">
+                <li class="nav-item"><a asp-controller="Lms" asp-action="Index" class="nav-link text-white">検索</a></li>
+                <li class="nav-item"><a asp-controller="Lms" asp-action="Register" class="nav-link text-white">登録</a></li>
+                <li class="nav-item"><a asp-controller="Home" asp-action="Index" class="nav-link text-white">ログアウト</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    @RenderBody()
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -30,7 +30,7 @@ public class HomeController : Controller
         EmployeeEntity employee = new EmployeeEntity { Id = id, Pass = pass };
         EmployeeEntity result = _employeeDao.Find(employee);
         
-        if (result == null) return RedirectToAction("Failed");
+        if (result == null) return View("Failed");
         
         ViewData["name"] = result.Name;
         return View();
