@@ -8,6 +8,6 @@ public interface IBookDao
     BookEntity FindByIsbn(BookEntity entity);
     BookEntity FindByTitle(BookEntity entity);
     List<BookEntity> FindByAuthor(BookEntity entity);
-
     void Add(BookEntity entity);
+    void Update(BookEntity entiry);
 }

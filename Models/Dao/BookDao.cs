@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using LMS.Models.Dao.Interface;
 using LMS.Models.Entities;
 using MySql.Data.MySqlClient;
@@ -110,6 +109,19 @@ public class BookDao : BaseDao<BookEntity>, IBookDao
         connection.Open();
 
         string sql = "INSERT INTO Books VALUES (@isbn, @title, @author)";
+        using var cmd = new MySqlCommand(sql, connection);
+        cmd.Parameters.Add("@isbn", MySqlDbType.VarChar, 13).Value = entity.Isbn;
+        cmd.Parameters.Add("@title", MySqlDbType.VarChar, 255).Value = entity.Title;
+        cmd.Parameters.Add("@author", MySqlDbType.VarChar, 100).Value = entity.Author;
+        cmd.ExecuteNonQuery();
+    }
+
+    public void Update(BookEntity entity)
+    {
+        using var connection = new MySqlConnection(ConnectionString);
+        connection.Open();
+
+        string sql = "UPDATE Books SET Title = @title, Author = @author WHERE Isbn = @isbn";
         using var cmd = new MySqlCommand(sql, connection);
         cmd.Parameters.Add("@isbn", MySqlDbType.VarChar, 13).Value = entity.Isbn;
         cmd.Parameters.Add("@title", MySqlDbType.VarChar, 255).Value = entity.Title;
