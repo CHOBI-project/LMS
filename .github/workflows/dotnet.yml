@@ -26,9 +26,10 @@ jobs:
           
       - name: Wait for MySQL to be ready
         run: |
-          until mysqladmin ping -h "mysql" --silent; do
-          echo "Waiting for database..."
-          sleep 5
+          for i in {1..30}; do
+            mysqladmin ping -h "mysql" --silent && break
+            echo "Waiting for database..."
+            sleep 5
           done
           
       - name: Restore dependencies
