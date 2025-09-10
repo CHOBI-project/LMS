@@ -11,6 +11,7 @@
       <Content Include="..\.dockerignore">
         <Link>.dockerignore</Link>
       </Content>
+      <Content Include=".github\workflows\azure_deploy.yml" />
       <Content Include=".github\workflows\dotnet.yml" />
     </ItemGroup>
 
